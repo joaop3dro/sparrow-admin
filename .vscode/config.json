@@ -1,0 +1,55 @@
+{
+    "editor.formatOnSave": false,
+    "editor.renderLineHighlight": "gutter",
+    "editor.rulers": [80, 120],
+    "editor.highlightActiveIndentGuide": true,
+
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.activityBar.visible": true,
+    "window.zoomLevel": 3,
+    "git.autofetch": true,
+
+    "html.suggest.html5": true,
+
+    "emmet.includeLanguages": {  
+        "php": "html",  
+    },  
+    
+    "htmlhint.documentSelector": [
+        "html",
+        "htm",
+        "php"
+    ],
+    "htmlhint.options": {
+        "tagname-lowercase": false,
+        "attr-lowercase": true,
+        "attr-value-double-quotes":  true,
+        "attr-no-duplication": true,
+        "src-not-empty": true,
+        "id-unique": true,
+    },
+    "[php]": {
+        "editor.formatOnSave": true
+    },
+    "php.executablePath": "C:\\xampp\\php\\php.exe",
+    "php.validate.executablePath": "C:\\xampp\\php\\php.exe",
+    "phpfmt.php_bin": "\"C:\\xampp\\php\\php.exe\"",
+    "phpfmt.passes": [
+        "PSR2KeywordsLowerCase",
+        "PSR2LnAfterNamespace",
+        "PSR2CurlyOpenNextLine",
+        "PSR2ModifierVisibilityStaticOrder",
+        "PSR2SingleEmptyLineAndStripClosingTag",
+        "ReindentSwitchBlocks"
+    ],
+    "auto-close-tag.activationOnLanguage": [
+        "xml",
+        "php",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "markdown",
+        "HTML (Eex)"
+    ],
+}

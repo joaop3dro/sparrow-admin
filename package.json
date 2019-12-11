@@ -1,0 +1,22 @@
+{
+  "name": "sparrow-admin",
+  "version": "1.0.0",
+  "description": "Gerenciador do Sparrow Events",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weltoncastoldi/Sparrow-admin.git"
+  },
+  "author": "Welton Castoldi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/weltoncastoldi/Sparrow-admin/issues"
+  },
+  "homepage": "https://github.com/weltoncastoldi/Sparrow-admin#readme",
+  "dependencies": {
+    "jquery": "^3.4.1"
+  }
+}
