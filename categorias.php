@@ -1,5 +1,10 @@
-<?php  
-    require_once realpath(dirname(__FILE__).'/src/models/CategoriaModel.php');
+<?php 
+require_once realpath(dirname(__FILE__).'/src/models/categoriaModel.php'); 
+//require_once realpath(dirname(__FILE__).'/src/models/loginModel.php');
+  //session_start(); // Obrigatoriamente abrir um start
+  //session_destroy();
+  //LoginModel:: verificaSeLogado();
+  //var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <!--
@@ -20,13 +25,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
 
-        <!-- INICIO Navbar -->
-        <?php require_once("layout/navbar.php"); ?>
-        <!-- FIM navbar -->
-
-        <!-- INICIO Main Sidebar Container -->
-        <?php require_once("layout/mainSideBar.php"); ?>
-        <!-- FIM Main Sidebar Container -->
+        <?php require_once ("layout/navBar.php"); ?>
+        <?php require_once ("layout/mainSidebar.php"); ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -35,15 +35,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Categorias de eventos</h1>
-                        </div>
+                            <h1 class="m-0 text-dark">Categorias de Eventos</h1>
+                        </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Categorias de eventos</li>
+                                <li class="breadcrumb-item active">Categorias de Eventos</li>
                             </ol>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- /.content-header -->
@@ -55,17 +55,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo">
-                                        <i class="fas fa-plus mr-1"></i>Nova categoria
-                                    </button>
-
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo"><i
+                                            class="fas fa-plus mr-1"></i>Nova Categoria</button>
                                     <!-- Modal -->
                                     <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Nova categoria</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Nova Categoria</h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Fechar">
                                                         <span aria-hidden="true">&times;</span>
@@ -77,20 +75,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <label>Nome da categoria</label>
-                                                                    <input type="text" class="form-control"
+                                                                    <label>Nova categoria</label>
+                                                                    <input class="form-control" type="text"
                                                                         name="txtNomeCategoria" required>
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Fechar</button>
-                                                        <button name="insert" type="submit"
-                                                            class="btn btn-primary">Salvar
-                                                            mudanças</button>
+                                                        <button type="submit" name="inset"
+                                                            class="btn btn-primary">Salvar</button>
+                                                        <button type="button" data-dismiss="modal"
+                                                            class="btn btn-secondary">Fechar</button>
+
                                                     </div>
                                                 </form>
                                             </div>
@@ -99,7 +96,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body p-0">
-                                    <table id="tabelaCategorias" class="table table-striped">
+                                    <table class="table table-striped" method="POST" id="tabelacategoria">
+                                        <input type="hidden" name="acao" value="update">
                                         <thead>
                                             <tr>
                                                 <th style="width: 10px">#</th>
@@ -108,89 +106,93 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <th style="width: 40px">Ações</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <?php 
-                                           
-                                            
-                                            $listaCategorias = CategoriaModel::listarTodos();
 
-                                            foreach ($listaCategorias as $categoria) {
-                                                  echo "<tr>
-                                                        <td>".$categoria['id_categoria']."</td>
-                                                        <td>".$categoria['nome']."</td>
-                                                        <td>".$categoria['status']."</td>
-                                                        <td><button class='btn btn-sm btn-warning' 
-                                                            data-toggle='modal' data-target='#modalAlterar'>
-                                                            <i class='fas fa-edit'></i></button></td>
-                                                      </tr>";
-                                            }
-                                        ?>
-                                            <div class="modal fade" id="modalAlterar" tabindex="-1" role="dialog"
-                                                aria-hidden="true">
+                                        <tbody>
+                                            <?php                                    
+                                      
+                                      $listaCategorias = categoriaModel::ListarTodos();
+                                      
+                                      foreach ($listaCategorias as $categoria){
+                                        //var_dump($categoria);
+                                        echo "<tr>
+                                              <td>".$categoria['id_categoria']."</td>
+                                              <td>".$categoria['nome']."</td>
+                                              <td>".($categoria['status'] == 'Ativo' ?  "<span class='badge badge-success'>ATIVO</span>" : "<span class='badge badge-danger'>INATIVO</span>" )."</td>
+                                              <td><div class='btn-group mr-2' role='group' aria-label='Segundo grupo'>
+                                              <button type='submit' class='btn btn-primary' data-target='#updateModal' data-toggle='tooltip modal' data-placement='top' title='Editar'><i class='fas fa-edit'></i></button>
+                                              <button type='button' class='btn btn-secondary'data-toggle='tooltip' data-placement='top' title='Excluir'><i class='fas fa-trash-alt'></i></button>
+                                            </div></td>
+                                              </tr>";                                               
+                                      }
+                                    ?>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title">Alterar categoria</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Fechar">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
+                                                            <h5 class="modal-title" id="exampleModalLabel">Alterar
+                                                                Categoria
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Fechar">
+
+                                                                </button>
                                                         </div>
                                                         <form method="POST">
                                                             <div class="modal-body">
-                                                                <input type="hidden" name="acao" value="insert">
+                                                                <input type="hidden" name="acao" value="update">
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
-                                                                            <label>Nome da categoria</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="txtNomeCategoria" required>
+                                                                            <label>Atualizar</label>
+                                                                            <input class="form-control" type="text"
+                                                                                name="txtAtualizarCategoria" required>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Fechar</button>
-                                                                <button name="update" type="submit"
-                                                                    class="btn btn-primary">Salvar
-                                                                    mudanças</button>
+                                                                <button type="submit" name="update"
+                                                                    class="btn btn-primary">Salvar</button>
+                                                                <button type="button" data-dismiss="modal"
+                                                                    class="btn btn-secondary">Fechar</button>
                                                             </div>
                                                         </form>
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </tbody>
                                     </table>
                                 </div>
+                                <!-- /.card-body -->
                             </div>
                         </div>
                     </div>
-                </div>
+                </div><!-- /.container-fluid -->
             </div>
-            <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
 
-        <!-- Control Sidebar -->
-        <?php require_once("layout/controlSideBar.php"); ?>
-        <!-- /.control-sidebar -->
+        <?php require_once ("layout/controlsidebar.php"); ?>
+        <?php require_once ("layout/footer.php"); ?>
 
-        <!-- #region Footer -->
-        <?php require_once("layout/footer.php"); ?>
-        <!-- #endregion Footer -->
-    </div>
-    <!-- ./wrapper -->
 
-    <!-- REQUIRED SCRIPTS -->
-    <?php require_once("dist/js/javascript.php");?>
-    <script>
+        <?php require_once ("dist/js/javaScript.php"); ?>
+        <script>
     $(document).ready(function() {
-        $('#tabelaCategorias').DataTable();
-    });
-    </script>
+        $('#tabelacategoria').DataTable({
+            "oLanguage" : {
+                "sUrl": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese.json"
+            }
+        });
+    })
+        $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+        </script>
+        
+        
+
 
 </body>
 

@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/weltoncastoldi/Sparrow-admin#readme",
   "dependencies": {
-    "jquery": "^3.4.1"
+    "jquery": "^3.4.1",
+    "toastr": "^2.1.4"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.0"
   }
 }

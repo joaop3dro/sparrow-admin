@@ -3,7 +3,7 @@ $('#formLogin').on("submit", function (event) {
     event.preventDefault();
     console.log($('#formLogin').serialize());
     $.ajax({
-        url: "logins.php",
+        url: "login.php",
         method: "POST",
         data: $('#formLogin').serialize(),
         beforeSend: function () {
@@ -14,22 +14,22 @@ $('#formLogin').on("submit", function (event) {
 
             if (res.logado == true) {
 
-                //toastr.success('Perfeito!', res['mensagem']);
+                toastr.success('Perfeito!', res['mensagem']);
 
                 setTimeout(function () {
-                   // window.location.href = "index.php";
+                    window.location.href = "index.php";
                 }, 5000);
             } else {
-                //toastr.error(res.mensagem);
+                toastr.error(res.mensagem);
             }
 
         },
         error: function (request, status, error) {
-            // swal.fire({
-            //     title: '<strong>Algo deu errado</strong>',
-            //     icon: 'error',
-            //     html: "<p>Código: " + request.status + "</p><p> status: " +status + "</p><p> erro: "+error+"</p>",                
-            //   });
+            swal.fire({
+                 title: '<strong>Algo deu errado</strong>',
+                 icon: 'error',
+                 html: "<p>Código: " + request.status + "</p><p> status: " +status + "</p><p> erro: "+error+"</p>",                
+               });
           }
     });
 }
