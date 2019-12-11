@@ -1,8 +1,10 @@
+<?php
+    require_once realpath(dirname(__FILE__).'/src/models/LoginModel.php');
+    session_start(); //Obrigatorio abrir um start
+    //session_destroy();
+    LoginModel::verificaSeLogado();
+?>
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html lang="pt-br">
 
 <head>

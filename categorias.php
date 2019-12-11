@@ -1,16 +1,11 @@
 <?php 
 require_once realpath(dirname(__FILE__).'/src/models/categoriaModel.php'); 
-//require_once realpath(dirname(__FILE__).'/src/models/loginModel.php');
-  //session_start(); // Obrigatoriamente abrir um start
+require_once realpath(dirname(__FILE__).'/src/models/loginModel.php');
+  session_start(); // Obrigatoriamente abrir um start
   //session_destroy();
-  //LoginModel:: verificaSeLogado();
-  //var_dump($_SESSION);
+  LoginModel:: verificaSeLogado();
 ?>
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html lang="pt-br">
 
 <head>

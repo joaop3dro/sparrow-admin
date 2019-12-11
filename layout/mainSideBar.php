@@ -1,3 +1,4 @@
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
@@ -40,7 +41,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="fornecedor.php" class="nav-link">
+                    <a href="fornecedor.php" class="nav-link <?php echo((basename($_SERVER['SCRIPT_NAME']) == 'fornecedor.php' ? 'active' : '' ));?>">
                         <i class="fas fa-building nav-icon"></i>
                         <p>Fornecedores</p>
                     </a>
@@ -68,7 +69,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="subcategorias.php" class="nav-link <?php echo((basename($_SERVER['SCRIPT_NAME']) == 'subcategorias.php' ? 'active' : '' ));?>">
+                            <a href="subcategoria.php" class="nav-link <?php echo((basename($_SERVER['SCRIPT_NAME']) == 'subcategoria.php' ? 'active' : '' ));?>">
                                 <i class="far fa-bookmark nav-icon"></i>                                
                                 <p>Subcategorias</p>     
                             </a>
@@ -76,7 +77,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="login.php" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>
                             Sair                            

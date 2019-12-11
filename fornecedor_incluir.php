@@ -10,23 +10,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>My PHP | Home</title>
-    <?php require_once "dist/css/css.php";?>
-    <link rel="stylesheet" href="dist/css/inputLoading.css">
+    <title>My PHP | Incluir Fornecedor</title>
+    <?php require_once("dist/css/css.php"); ?>
 </head>
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
 
-        <!-- INICIO Navbar -->
-        <?php 
-        
-        require_once "layout/navbar.php";?>
-        <!-- FIM navbar -->
-
-        <!-- INICIO Main Sidebar Container -->
-        <?php require_once "layout/mainSideBar.php";?>
-        <!-- FIM Main Sidebar Container -->
+        <?php require_once ("layout/navBar.php"); ?>
+        <?php require_once ("layout/mainSidebar.php"); ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -35,45 +27,42 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Cadastrar fornecedor</h1>
+                            <h1 class="m-0 text-dark">Cadastrar Fornecedor</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                <li class="breadcrumb-item active"><a href="fornecedor.php">Fornecedor</a></li>
                                 <li class="breadcrumb-item active">Cadastrar</li>
-                                <li class="breadcrumb-item active">Fornecedor</li>
                             </ol>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- /.content-header -->
-
-            <!-- Main content -->
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title">Dados do Fornecedor</h5>
+                                    <h5 class="card-title">Dados Cadastrais</h5>
                                 </div>
-                                <form role="form" name="formCadastrarFornecedor" action="processa_cadastro.php"
+                                <form role="form" name="formCadastrarFornecedor" 
                                     method="POST">
+                                    <input type="hidden" name="acao" value="insert">
                                     <div class="card-body">
-
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label>Estabelecimento</label>
                                                     <div class="form-check">
                                                         <input id="pf" class="form-check-input" type="radio"
-                                                            name="tipoPessoa">
+                                                            name="radio1">
                                                         <label for="pf" class="form-check-label">Pessoa Física</label>
                                                     </div>
                                                     <div class="form-check">
                                                         <input id="pj" class="form-check-input" type="radio"
-                                                            name="tipoPessoa">
+                                                            name="radio1">
                                                         <label for="pj" class="form-check-label">Pessoa Jurídica</label>
                                                     </div>
                                                 </div>
@@ -81,98 +70,121 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <div class="col-md-2" id="divTipoDocumento">
                                                 <div class="form-group">
                                                     <label></label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control" name="cnpj">
                                                 </div>
                                             </div>
-                                            <div class="col-md-3" id="divNomeRazaoSocial">
+                                            <div class="col-md-3" id="divNomeRazaoSocial" >
                                                 <div class="form-group">
                                                     <label></label>
-                                                    <input type="text" class="form-control" name="nome">
+                                                    <input type="text" class="form-control" name="razaoSocial">
                                                 </div>
                                             </div>
                                             <div class="col-md-3" id="divNomeFantasia">
                                                 <div class="form-group">
                                                     <label></label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control" name="nomeFantasia">
                                                 </div>
                                             </div>
                                             <div class="col-md-2" id="divInscricaoEstadual">
                                                 <div class="form-group">
                                                     <label></label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control" name="inscricaoEstadual">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label>CEP</label>
-                                                    <input name="cep" type="text" class="form-control cep" id="cep">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Logradouro</label>
-                                                    <input name="logradouro" type="text" class="form-control loading" id="logradouro">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Número</label>
-                                                    <input name="numero" type="text" class="form-control" id="numero"
-                                                        data-mask="S00.0">
-                                                </div>
+                               
+                    
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="cep">CEP</label>
+                                                <input id="cep" name="cep" type="text" class="form-control cep">
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Bairro</label>
-                                                    <input name="bairro" type="text" class="form-control loading" id="bairro">
-                                                </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="logradouro">Logradouro</label>
+                                                <input id="logradouro" name="logradouro" type="text"
+                                                    class="form-control">
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Cidade</label>
-                                                    <input name="cidade" type="text" class="form-control" id="cidade">
-                                                </div>
-                                            </div>
-
                                         </div>
-
-
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="numero">Número</label>
+                                                <!-- DATA serve para limitar minha formatação, ex. os dados só podem ser uma letra e três numeros ou a mascara que eu escolher (A00.0)-->
+                                                <input id="numero" name="numero" type="text" class="form-control"
+                                                    >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label for="bairro">Bairro</label>
+                                                <input id="bairro" name="bairro" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="cidade">Cidade</label>
+                                                <input id="cidade" name="cidade" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="form-group">
+                                                <label for="uf">UF</label>
+                                                <input id="uf" name="uf" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="ibge">IBGE</label>
+                                                <input id="ibge" name="ibge" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="celular">Celular</label>
+                                                <!-- Seunda forma de criar mascara, fazendo minha formatação o meu js e add a classe no input-->
+                                                <input id="celular" name="celular" type="text"
+                                                    class="form-control celular">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="telefoneFixo">Telefone Fixo</label>
+                                                <!-- segunda forma de mascara com o DATA, criei minha formatação-->
+                                                <input id="telefoneFixo" name="telefoneFixo" type="text"
+                                                    class="form-control" data-mask="(00) 0000-0000">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                                        <button type="reset" class="btn btn-link">Limpar formulário</button>
-                                    </div>
-                                </form>
+
                             </div>
+                            <div class="card-footer">
+                            
+                                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                <button type="reset" class="btn btn-link">Limpar</button>
+                            </div>
+                            </form>
+                            <div class="card-body p-0">
+                                            <?php                                    
+                                      require_once realpath(dirname(__FILE__).'/src/models/fornecedorModel.php');
+                                      $listaCategorias = categoriaModel::ListarTodos();
+                                    ?>
+                                </div>
                         </div>
                     </div>
-                    <!-- /.row -->
-                </div><!-- /.container-fluid -->
+                </div>
             </div>
-            <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
-
-        <!-- Control Sidebar -->
-        <?php require_once "layout/controlSideBar.php";?>
-        <!-- /.control-sidebar -->
-
-        <!-- #region Footer -->
-        <?php require_once "layout/footer.php";?>
-        <!-- #endregion Footer -->
     </div>
-    <!-- ./wrapper -->
+    <?php require_once ("layout/controlsidebar.php"); ?>
+    <?php require_once ("layout/footer.php"); ?>
 
-    <!-- REQUIRED SCRIPTS -->
 
-    <?php require_once "dist/js/javascript.php";?>
+    <!-- JavaScript -->
+    <?php require_once ("dist/js/javaScript.php"); ?>
+    <script src="dist/js/MyInputMask.js"></script>
     <script src="dist/js/pages/fornecedor/fornecedor_incluir.js"></script>
-    <script src="dist/js/viacep.js"></script>
-    <script src="dist/js/meuInputMask.js"></script>
 </body>
 
 </html>
