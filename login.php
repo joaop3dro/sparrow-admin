@@ -7,12 +7,10 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-
     <title>Sparrow Admin | Login</title>
     <?php require_once("dist/css/css.php"); ?>
 
@@ -23,16 +21,13 @@
         <div class="login-logo">
             <a href="#"><b>Sparrow</b>Admin</a>
         </div>
-        <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Gerenciador web do Sparrow Events</p>
-
-                <form id="formLogin" method="post">
-                    <input type="hidden" name="acao" value="logar">
-                    <div class="input-group mb-3">
-                        <input name="inputEmail" id="inputEmail" type="email" class="form-control" placeholder="Email"
-                            required>
+                    <form id="formLogin" method="post">
+                        <input type="hidden" name="acao" value="logar">
+                            <div class="input-group mb-3">
+                                <input name="inputEmail" id="inputEmail" type="email" class="form-control" placeholder="Email"required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -65,10 +60,8 @@
 
             </div>
             <p id="mensagem"></p>
-            <!-- /.login-card-body -->
         </div>        
     </div>
-    <!-- /.login-box -->
 
     <?php require_once("dist/js/javascript.php");?>
     <script src="dist/js/services/loginService.js"></script>
